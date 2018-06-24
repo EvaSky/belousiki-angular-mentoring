@@ -6,10 +6,12 @@ import { CourseListComponent } from './components/course-list/course-list.compon
 import { CourseItemComponent } from './components/course-list/components/course-item/course-item.component';
 import { SearchComponent } from './components/tool-bar/components/search/search.component';
 import { CoursesDataService } from './services/courses-data.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
-        CommonModule
+        CommonModule,
+        ReactiveFormsModule
     ],
     exports: [
         CoursesComponent
