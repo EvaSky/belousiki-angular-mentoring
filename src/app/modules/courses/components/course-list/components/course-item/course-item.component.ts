@@ -16,4 +16,12 @@ export class CourseItemComponent implements OnInit {
     ngOnInit() {
     }
 
+    edit() {
+        console.log('edit');
+    }
+
+    delete() {
+        console.log('delete');
+    }
+
 }

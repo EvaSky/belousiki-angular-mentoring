@@ -1,15 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
-body {
-    /* Margin bottom by footer height */
-    margin-bottom: 60px;
+html {
+    position: relative;
+    min-height: 100%;
 }
 
-/*
+body {
+    margin-bottom: 60px !important;
+}
+
+.space-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inline {
+    display: inline-flex;
+}
+
+.card-text {
+    text-align: justify;
+}
 .footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    !* Set the fixed height of the footer here *!
     height: 60px;
     line-height: 60px;
-}*/
+    background-color: #f5f5f5;
+    text-align: center;
+}

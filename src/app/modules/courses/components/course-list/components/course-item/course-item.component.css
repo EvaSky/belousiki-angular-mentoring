@@ -1,0 +1,5 @@
+.action-btns {
+    display: flex;
+    flex-direction: column;
+    align-self: self-start;
+}
