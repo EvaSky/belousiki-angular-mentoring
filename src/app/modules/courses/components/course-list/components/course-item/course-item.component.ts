@@ -8,7 +8,7 @@ import { Course } from '../../../../models/course';
 })
 export class CourseItemComponent implements OnInit {
 
-    @Input() course: Course;
+    @Input() course: Course = new Course();
 
     constructor() {
     }

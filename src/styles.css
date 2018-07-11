@@ -17,6 +17,9 @@ body {
     display: inline-flex;
 }
 
+.card {
+    margin: 20px;
+}
 .card-text {
     text-align: justify;
 }
@@ -27,5 +30,8 @@ body {
     height: 60px;
     line-height: 60px;
     background-color: #f5f5f5;
+    text-align: center;
+}
+.text-center {
     text-align: center;
 }

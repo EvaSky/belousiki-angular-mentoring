@@ -4,15 +4,17 @@ export const CoursesMock: Course[] = [
     {
         'id': '5b1eecd94bd60b8a92e42123',
         'title': 'Mollit commodo ullamco voluptate non id.',
-        'creationDate': new Date('2018-04-22'),
+        'creationDate': new Date('2018-06-30'),
         'duration': 2496,
+        'topRated': true,
         'description': 'Occaecat quis Lorem ipsum nostrud sunt veniam proident commodo nostrud labore excepteur. Minim pariatur et deserunt officia Lorem est. Deserunt et deserunt ut nulla eu aliquip nostrud velit sint nulla qui commodo tempor. Dolore eu irure id amet eiusmod aute ea sit Lorem aliquip Lorem dolore laborum magna. Anim ad quis veniam aliqua minim voluptate mollit ex laboris enim.\r\n'
     },
     {
         'id': '5b1eecd9ccfd4c104f5c7e39',
         'title': 'Amet quis laborum sit amet duis elit magna.',
-        'creationDate':  new Date('2018-05-17'),
+        'creationDate':  new Date('2018-07-17'),
         'duration': 1574,
+        'topRated': true,
         'description': 'Minim mollit excepteur reprehenderit ut ad ea et tempor incididunt aute minim irure. Ipsum consequat incididunt irure fugiat sit eu consectetur. Id tempor non anim sit. Qui mollit in ut commodo eu duis aliqua minim nostrud et mollit cillum mollit.\r\n'
     },
     {
@@ -25,15 +27,16 @@ export const CoursesMock: Course[] = [
     {
         'id': '5b1eecd9d6965469b4e21ff6',
         'title': 'Consectetur aliqua dolore minim cupidatat laboris.',
-        'creationDate':  new Date('2018-04-17'),
+        'creationDate':  new Date('2018-07-05'),
         'duration': 446,
         'description': 'Ea esse tempor anim anim magna tempor tempor irure labore. Fugiat velit et reprehenderit culpa ut ipsum irure Lorem nostrud enim est officia sit mollit. Qui veniam quis minim in voluptate esse. Labore nostrud commodo do et mollit do.\r\n'
     },
     {
         'id': '5b1eecd919cfdb86a00c3b9d',
         'title': 'Mollit nostrud reprehenderit enim.',
-        'creationDate':  new Date('2018-02-24'),
+        'creationDate':  new Date('2018-07-24'),
         'duration': 1954,
+        'topRated': false,
         'description': 'Ut aliqua deserunt ad id sit eu. Est cillum aliqua tempor ea excepteur duis. Cupidatat ad qui excepteur nulla veniam non sint culpa velit. Cillum eu aliqua incididunt labore Lorem esse.\r\n'
     }
 ];

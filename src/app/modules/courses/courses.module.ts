@@ -7,6 +7,8 @@ import { CourseItemComponent } from './components/course-list/components/course-
 import { SearchComponent } from './components/tool-bar/components/search/search.component';
 import { CoursesDataService } from './services/courses-data.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EditCourseModalComponent } from './components/course-list/components/course-item/components/edit-course-modal/edit-course-modal.component';
+import { StatusCourseDirective } from './components/course-list/components/course-item/directives/status-course.directive';
 
 @NgModule({
     imports: [
@@ -21,7 +23,9 @@ import { ReactiveFormsModule } from '@angular/forms';
         ToolBarComponent,
         CourseListComponent,
         CourseItemComponent,
-        SearchComponent
+        SearchComponent,
+        EditCourseModalComponent,
+        StatusCourseDirective
     ],
     providers: [
         CoursesDataService
