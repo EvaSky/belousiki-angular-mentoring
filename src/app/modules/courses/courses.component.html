@@ -1,5 +1,5 @@
 <section>
-    <app-tool-bar></app-tool-bar>
-    <app-course-list [courses]="courses"></app-course-list>
+    <app-tool-bar (search)="findCourses($event)"></app-tool-bar>
+    <app-course-list [courses]="displayedCourses"></app-course-list>
 </section>
 

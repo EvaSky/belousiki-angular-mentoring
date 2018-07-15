@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -7,6 +7,8 @@ import { FormControl, FormGroup } from '@angular/forms';
     styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
+
+    @Output() search: EventEmitter<string> = new EventEmitter();
 
     searchForm: FormGroup;
 
@@ -21,6 +23,7 @@ export class SearchComponent implements OnInit {
 
     onSearch(): void {
         console.log('search: ' + this.searchForm.value.search);
+        this.search.emit(this.searchForm.value.search);
     }
 
 }

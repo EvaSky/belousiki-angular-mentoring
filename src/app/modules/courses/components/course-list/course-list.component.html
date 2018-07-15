@@ -1,5 +1,5 @@
 <div *ngIf="courses.length; else noInfo">
-    <app-course-item *ngFor="let course of courses" [course]="course">
+    <app-course-item *ngFor="let course of courses | orderBy:'creationDate'" [course]="course">
     </app-course-item>
 </div>
 <ng-template #noInfo>

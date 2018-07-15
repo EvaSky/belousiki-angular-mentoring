@@ -21,7 +21,7 @@ export const CoursesMock: Course[] = [
         'id': '5b1eecd98d53e2151fac279e',
         'title': 'Id cillum nisi eu ex fugiat aliquip cillum incididunt veniam.',
         'creationDate':  new Date('2018-01-20'),
-        'duration': 2517,
+        'duration': 50,
         'description': 'Ea incididunt deserunt irure Lorem. Excepteur adipisicing quis amet duis in voluptate minim anim pariatur. Non pariatur adipisicing cillum elit ad sint consequat culpa ex fugiat. Ipsum magna occaecat consequat ipsum eu labore reprehenderit aliquip labore ea mollit do minim. Cillum quis elit mollit sit ullamco quis ex in labore dolore. Do cillum incididunt nostrud nisi adipisicing nisi quis est dolore culpa duis adipisicing non.\r\n'
     },
     {
@@ -35,7 +35,7 @@ export const CoursesMock: Course[] = [
         'id': '5b1eecd919cfdb86a00c3b9d',
         'title': 'Mollit nostrud reprehenderit enim.',
         'creationDate':  new Date('2018-07-24'),
-        'duration': 1954,
+        'duration': 45,
         'topRated': false,
         'description': 'Ut aliqua deserunt ad id sit eu. Est cillum aliqua tempor ea excepteur duis. Cupidatat ad qui excepteur nulla veniam non sint culpa velit. Cillum eu aliqua incididunt labore Lorem esse.\r\n'
     }

@@ -9,6 +9,9 @@ import { CoursesDataService } from './services/courses-data.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditCourseModalComponent } from './components/course-list/components/course-item/components/edit-course-modal/edit-course-modal.component';
 import { StatusCourseDirective } from './components/course-list/components/course-item/directives/status-course.directive';
+import { DurationPipe } from './components/course-list/components/course-item/pipes/duration.pipe';
+import { OrderByPipe } from './components/course-list/pipes/order-by.pipe';
+import { SearchPipe } from './pipes/search.pipe';
 
 @NgModule({
     imports: [
@@ -25,10 +28,13 @@ import { StatusCourseDirective } from './components/course-list/components/cours
         CourseItemComponent,
         SearchComponent,
         EditCourseModalComponent,
-        StatusCourseDirective
+        StatusCourseDirective,
+        DurationPipe,
+        OrderByPipe
     ],
     providers: [
-        CoursesDataService
+        CoursesDataService,
+        SearchPipe
     ]
 })
 export class CoursesModule {
