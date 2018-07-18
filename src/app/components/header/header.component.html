@@ -2,11 +2,15 @@
   <a class="navbar-brand" href="#">
       <img src="../../../assets/logo1.png"  height="50" alt="">
   </a>
-    <div>
+    <div *ngIf="isAuthenticated(); else elseBlock">
         <div class="navbar-text mr-2">
-            {{userName}}
+            {{getUserName()}}
         </div>
-        <button class="btn btn-sm btn-outline-secondary" type="button">Log Off</button>
+        <button class="btn btn-sm btn-outline-secondary" type="button"
+         click="logout()">Log Off</button>
     </div>
+    <ng-template #elseBlock>
+        <button class="btn btn-sm btn-outline-secondary" type="button">Login</button>
+    </ng-template>
 </nav>
 

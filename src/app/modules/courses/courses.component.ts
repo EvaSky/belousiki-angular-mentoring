@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, OnChanges } from '@angular/core';
 import { CoursesDataService } from './services/courses-data.service';
 import { Course } from './models/course';
 import { Observable, Subject } from 'rxjs';
@@ -6,38 +6,50 @@ import { takeUntil } from 'rxjs/operators';
 import { SearchPipe } from './pipes/search.pipe';
 
 @Component({
-  selector: 'app-courses',
-  templateUrl: './courses.component.html',
-  styleUrls: ['./courses.component.css']
+    selector: 'app-courses',
+    templateUrl: './courses.component.html',
+    styleUrls: ['./courses.component.css']
 })
-export class CoursesComponent implements OnInit, OnDestroy {
+export class CoursesComponent implements OnInit, OnDestroy, OnChanges {
 
-  public courses: Course[];
-  private _courseSub: Observable<Course[]>;
-  private destroy$: Subject<boolean> = new Subject<boolean>();
-  private displayedCourses: Course[];
+    public courses: Course[];
+    private _courseSub: Observable<Course[]>;
+    private destroy$: Subject<boolean> = new Subject<boolean>();
+    private displayedCourses: Course[];
 
     constructor(private coursesDataService: CoursesDataService,
-                private searchPipe: SearchPipe) { }
+        private searchPipe: SearchPipe) { }
 
-  ngOnInit() {
-    this.coursesDataService.getCourses()
-        .pipe(takeUntil(this.destroy$))
-        .subscribe(data => {
-          this.courses = data;
-          this.displayedCourses = [...this.courses];
-        });
+    ngOnInit() {
+        this.retrieveAllCourses();
+    }
 
-  }
+    ngOnChanges() {
+        this.retrieveAllCourses();
+    }
 
-  findCourses(searchInput): void {
-    this.displayedCourses = this.searchPipe.transform(this.courses, searchInput);
-  }
+    retrieveAllCourses() {
+        this.coursesDataService.getCourses()
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(data => {
+                this.courses = data;
+                this.displayedCourses = [...this.courses];
+            });
+    }
 
-  ngOnDestroy() {
-      this.destroy$.next(true);
-      // Now let's also unsubscribe from the subject itself:
-      this.destroy$.unsubscribe();
-  }
+    deleteCourse(course: Course) {
+        this.coursesDataService.removeCourse(course);
+        this.retrieveAllCourses();
+    }
+
+    findCourses(searchInput): void {
+        this.displayedCourses = this.searchPipe.transform(this.courses, searchInput);
+    }
+
+    ngOnDestroy() {
+        this.destroy$.next(true);
+        // Now let's also unsubscribe from the subject itself:
+        this.destroy$.unsubscribe();
+    }
 
 }

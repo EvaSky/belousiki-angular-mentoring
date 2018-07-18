@@ -1,4 +1,7 @@
 <app-header></app-header>
-<app-breadcrumbs></app-breadcrumbs>
-<app-courses></app-courses>
+<app-login-page *ngIf="!isAuthenticated(); else elseBlock"></app-login-page>
+<ng-template #elseBlock>
+    <app-breadcrumbs></app-breadcrumbs>
+    <app-courses></app-courses>
+</ng-template>
 <app-footer></app-footer>

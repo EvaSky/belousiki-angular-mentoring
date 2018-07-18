@@ -1,5 +1,5 @@
 <section>
     <app-tool-bar (search)="findCourses($event)"></app-tool-bar>
-    <app-course-list [courses]="displayedCourses"></app-course-list>
+    <app-course-list [courses]="displayedCourses" (delete)="deleteCourse($event)"></app-course-list>
 </section>
 

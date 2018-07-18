@@ -17,8 +17,25 @@
           </div>
           <div class="action-btns">
               <button class="btn btn-primary btn-sm mb-3" (click)="edit()">Edit</button>
-              <button class="btn btn-danger btn-sm" (click)="delete()">Delete</button>
+              <button class="btn btn-danger btn-sm" (click)="delete(content)">Delete</button>
           </div>
       </div>
   </div>
 </div>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Confirmation</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        Do you really want to delete this course? 
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c()">Yes</button>
+      <button type="button" class="btn btn-outline-dark" (click)="d()">No</button>
+    </div>
+  </ng-template>

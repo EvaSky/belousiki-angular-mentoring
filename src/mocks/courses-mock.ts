@@ -1,6 +1,6 @@
 import { Course } from '../app/modules/courses/models/course';
 
-export const CoursesMock: Course[] = [
+export let CoursesMock: Course[] = [
     {
         'id': '5b1eecd94bd60b8a92e42123',
         'title': 'Mollit commodo ullamco voluptate non id.',

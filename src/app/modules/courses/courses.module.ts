@@ -12,11 +12,13 @@ import { StatusCourseDirective } from './components/course-list/components/cours
 import { DurationPipe } from './components/course-list/components/course-item/pipes/duration.pipe';
 import { OrderByPipe } from './components/course-list/pipes/order-by.pipe';
 import { SearchPipe } from './pipes/search.pipe';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     imports: [
         CommonModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgbModule
     ],
     exports: [
         CoursesComponent
