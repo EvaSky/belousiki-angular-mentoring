@@ -9,15 +9,12 @@ import { AuthService } from '../../modules/auth/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-    @Input() user: User;
-
     userName: string;
 
     constructor(private authService: AuthService) {
     }
 
     ngOnInit() {
-        this.userName = this.user ? `${this.user.firstName} ${this.user.lastName}` : 'User Name';
     }
 
     logout() {
@@ -30,7 +27,7 @@ export class HeaderComponent implements OnInit {
     }
 
     getUserName() {
-        return this.authService.getUserInfo().name;
+        return this.authService.getUserInfo().login;
     }
 
 }
