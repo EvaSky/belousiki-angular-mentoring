@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './modules/auth/services/auth.service';
+import { Course } from './modules/courses/models/course';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +8,23 @@ import { AuthService } from './modules/auth/services/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  
+  isAddCoursePageOpen: boolean;
+  editedCourse: Course;
 
   constructor(private authService: AuthService) {}
 
-  isAuthenticated() {
+  isAuthenticated(): boolean {
     return this.authService.isAuthenticated();
   }
+
+  openAddCoursePage(course: Course) {
+    this.editedCourse = course;
+    this.isAddCoursePageOpen = true;
+  }
+
+  close() {
+    this.isAddCoursePageOpen = false;
+  }
+
 }

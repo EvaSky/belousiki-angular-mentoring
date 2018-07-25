@@ -1,6 +1,6 @@
 <section class="tool-bar space-between">
     <app-search (search)="doSearch($event)"></app-search>
-    <button class="btn btn-outline-primary mb-2 my-2" (click)="add()">
+    <button class="btn btn-outline-primary mb-2 my-2" (click)="openAddCourse.emit(null)">
         <i class="fa fa-plus" aria-hidden="true"></i>
         Add course
     </button>

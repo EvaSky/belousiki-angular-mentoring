@@ -7,7 +7,6 @@ import { CourseItemComponent } from './components/course-list/components/course-
 import { SearchComponent } from './components/tool-bar/components/search/search.component';
 import { CoursesDataService } from './services/courses-data.service';
 import { ReactiveFormsModule } from '@angular/forms';
-import { EditCourseModalComponent } from './components/course-list/components/course-item/components/edit-course-modal/edit-course-modal.component';
 import { StatusCourseDirective } from './components/course-list/components/course-item/directives/status-course.directive';
 import { DurationPipe } from './components/course-list/components/course-item/pipes/duration.pipe';
 import { OrderByPipe } from './components/course-list/pipes/order-by.pipe';
@@ -29,10 +28,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         CourseListComponent,
         CourseItemComponent,
         SearchComponent,
-        EditCourseModalComponent,
         StatusCourseDirective,
         DurationPipe,
-        OrderByPipe
+        OrderByPipe,
+        SearchPipe
     ],
     providers: [
         CoursesDataService,

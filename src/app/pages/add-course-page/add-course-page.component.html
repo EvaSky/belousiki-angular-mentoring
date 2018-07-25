@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="">
+      <div class="form-area">  
+          <div class="form">
+          <br style="clear:both">
+                      <h3 style="margin-bottom: 25px; text-align: center;">Add/ edit course</h3>
+            <div class="form-group">
+              <label for="title" class="">Title</label>
+              <input type="text" class="form-control" id="title" placeholder="Title" 
+                [(ngModel)]="courseModel.title">
+            </div>
+            <div class="form-group">
+              <label for="description" class="">Description</label>
+              <textarea class="form-control" type="textarea" id="description" placeholder="Description" 
+                rows="7" [(ngModel)]="courseModel.description"></textarea>                    
+            </div>
+            <div class="form-group">
+              <label for="date" class="">Date</label>
+              <input type="text" class="form-control" id="date" placeholder="dd/MM/yyyy"
+                [(ngModel)]="courseModel.creationDate">
+            </div>
+            <div class="form-group">
+              <label for="duration" class="">Duration</label>
+              <input type="number" class="form-control" id="duration" placeholder="Duration"
+                [(ngModel)]="courseModel.duration">
+            </div>
+            <div class="form-group">
+                <label for="authors" class="">Authors</label>
+                <input type="text" class="form-control" id="authors" placeholder="Authors">                    
+            </div>
+             
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-primary pull-left">Save</button>
+                <button type="button" class="btn btn-secondary pull-left" (click)="close.emit()">Cancel</button>
+            </div>
+          
+          </div>
+      </div>
+  </div>
+</div>

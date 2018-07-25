@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Course } from '../../models/course';
 
 @Component({
     selector: 'app-tool-bar',
@@ -8,15 +9,12 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class ToolBarComponent implements OnInit {
 
     @Output() search: EventEmitter<string> = new EventEmitter();
+    @Output() openAddCourse: EventEmitter<Course> = new EventEmitter();
 
     constructor() {
     }
 
     ngOnInit() {
-    }
-
-    add() {
-        console.log('add course');
     }
 
     doSearch(searchInput) {

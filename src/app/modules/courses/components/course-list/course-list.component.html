@@ -1,12 +1,12 @@
 <div *ngIf="courses.length; else noInfo">
     <app-course-item *ngFor="let course of courses | orderBy:'creationDate'" [course]="course"
-    (deleteCourse)="doDelete($event)">
+    (deleteCourse)="doDelete($event)" (editCourse)="doEdit($event)">
     </app-course-item>
 </div>
 <ng-template #noInfo>
     <div class="card text-center">
         <div class="card-body">
-            No Data. Feel Free To Add New Coursw
+            No Data. Feel Free To Add New Course
         </div>
       </div>
 </ng-template> 

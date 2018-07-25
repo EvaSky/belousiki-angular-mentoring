@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, OnChanges } from '@angular/core';
+import { Component, OnDestroy, OnInit, OnChanges, Output, EventEmitter } from '@angular/core';
 import { CoursesDataService } from './services/courses-data.service';
 import { Course } from './models/course';
 import { Observable, Subject } from 'rxjs';
@@ -12,10 +12,12 @@ import { SearchPipe } from './pipes/search.pipe';
 })
 export class CoursesComponent implements OnInit, OnDestroy, OnChanges {
 
+    @Output() open: EventEmitter<Course> = new EventEmitter<Course>();
+
     public courses: Course[];
+    public displayedCourses: Course[];
     private _courseSub: Observable<Course[]>;
     private destroy$: Subject<boolean> = new Subject<boolean>();
-    private displayedCourses: Course[];
 
     constructor(private coursesDataService: CoursesDataService,
         private searchPipe: SearchPipe) { }

@@ -1,16 +1,18 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Course } from '../../../../models/course';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-course-item',
     templateUrl: './course-item.component.html',
-    styleUrls: ['./course-item.component.css']
+    styleUrls: ['./course-item.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseItemComponent implements OnInit {
 
     @Input() course: Course = new Course();
     @Output() deleteCourse: EventEmitter<Course> = new EventEmitter<Course>();
+    @Output() editCourse: EventEmitter<Course> = new EventEmitter<Course>();
 
     constructor(private modalService: NgbModal) {
     }
@@ -19,7 +21,7 @@ export class CourseItemComponent implements OnInit {
     }
 
     edit() {
-        console.log('edit');
+       this.editCourse.emit(this.course);
     }
 
     delete(content) {

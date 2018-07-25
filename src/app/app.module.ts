@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { AuthModule } from './modules/auth/auth.module';
 import { FormsModule } from '@angular/forms';
+import { AddCoursePageComponent } from './pages/add-course-page/add-course-page.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
         HeaderComponent,
         FooterComponent,
         BreadcrumbsComponent,
-        LoginPageComponent
+        LoginPageComponent,
+        AddCoursePageComponent
     ],
     imports: [
         FormsModule,
