@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Course } from '../../../../models/course';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-course-item',
@@ -12,16 +13,16 @@ export class CourseItemComponent implements OnInit {
 
     @Input() course: Course = new Course();
     @Output() deleteCourse: EventEmitter<Course> = new EventEmitter<Course>();
-    @Output() editCourse: EventEmitter<Course> = new EventEmitter<Course>();
 
-    constructor(private modalService: NgbModal) {
+    constructor(private modalService: NgbModal,
+                private router: Router) {
     }
 
     ngOnInit() {
     }
 
     edit() {
-       this.editCourse.emit(this.course);
+        this.router.navigate(['/courses', this.course.id]);
     }
 
     delete(content) {
