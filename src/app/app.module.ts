@@ -13,13 +13,16 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { AddCoursePageComponent } from './pages/add-course-page/add-course-page.component';
 import { CoursesComponent } from './modules/courses/courses.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { AuthGuardService } from './modules/auth/services/auth-guard.service';
 
 export const ROUTES: Routes = [
     {path: '', redirectTo: '/courses', pathMatch: 'full'},
-    {path: 'courses', component: CoursesComponent},
+    {path: 'courses', component: CoursesComponent, canActivate: [AuthGuardService]},
     {path: 'login', component: LoginPageComponent},
-    {path: 'courses/new', component: AddCoursePageComponent},
-    {path: 'courses/:id', component: AddCoursePageComponent}
+    {path: 'courses/new', component: AddCoursePageComponent, canActivate: [AuthGuardService]},
+    {path: 'courses/:id', component: AddCoursePageComponent, canActivate: [AuthGuardService]},
+    {path: '**', component: PageNotFoundComponent}
 ] 
 @NgModule({
     declarations: [
@@ -28,7 +31,8 @@ export const ROUTES: Routes = [
         FooterComponent,
         BreadcrumbsComponent,
         LoginPageComponent,
-        AddCoursePageComponent
+        AddCoursePageComponent,
+        PageNotFoundComponent
     ],
     imports: [
         FormsModule,

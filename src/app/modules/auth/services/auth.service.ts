@@ -7,6 +7,9 @@ export class AuthService {
 
   constructor() { }
 
+  // store the URL so we can redirect after logging in
+  redirectUrl: string;
+
   login(login, pass): void {
     localStorage.setItem('currentUser', JSON.stringify({'login': login, 'password': pass}));
   }
