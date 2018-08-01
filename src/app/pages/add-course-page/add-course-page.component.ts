@@ -12,6 +12,7 @@ import { map } from 'rxjs/operators';
 export class AddCoursePageComponent implements OnInit {
 
   courseModel: Course;
+  currentPage: string;
   
   constructor( private route: ActivatedRoute,
               private router: Router,
@@ -26,6 +27,7 @@ export class AddCoursePageComponent implements OnInit {
     .subscribe(retrievedCourse => {
       const course = retrievedCourse;
       this.courseModel = course || new Course();
+      this.currentPage = this.courseModel.title || 'Add new course';
     });
   }
 

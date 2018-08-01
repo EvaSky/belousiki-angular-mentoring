@@ -1,5 +1,6 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Courses</a></li>
+    <li *ngIf="currentPage !== 'Courses'" class="breadcrumb-item"><a [routerLink]="['/courses']">Courses</a></li>
+    <li class="breadcrumb-item"><span>{{currentPage}}</span></li>
   </ol>
 </nav>

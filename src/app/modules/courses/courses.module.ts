@@ -12,12 +12,14 @@ import { DurationPipe } from './components/course-list/components/course-item/pi
 import { OrderByPipe } from './components/course-list/pipes/order-by.pipe';
 import { SearchPipe } from './pipes/search.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BreadcrumbsModule } from '../../components/breadcrumbs/breadcrumbs.module';
 
 @NgModule({
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        NgbModule
+        NgbModule,
+        BreadcrumbsModule
     ],
     exports: [
         CoursesComponent

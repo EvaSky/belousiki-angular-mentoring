@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import { CoursesModule } from './modules/courses/courses.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
@@ -15,6 +14,7 @@ import { AddCoursePageComponent } from './pages/add-course-page/add-course-page.
 import { CoursesComponent } from './modules/courses/courses.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { AuthGuardService } from './modules/auth/services/auth-guard.service';
+import { BreadcrumbsModule } from './components/breadcrumbs/breadcrumbs.module';
 
 export const ROUTES: Routes = [
     {path: '', redirectTo: '/courses', pathMatch: 'full'},
@@ -29,7 +29,6 @@ export const ROUTES: Routes = [
         AppComponent,
         HeaderComponent,
         FooterComponent,
-        BreadcrumbsComponent,
         LoginPageComponent,
         AddCoursePageComponent,
         PageNotFoundComponent
@@ -37,6 +36,7 @@ export const ROUTES: Routes = [
     imports: [
         FormsModule,
         BrowserModule,
+        BreadcrumbsModule,
         CoursesModule,
         AuthModule,
         NgbModule.forRoot(),
