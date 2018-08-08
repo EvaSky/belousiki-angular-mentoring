@@ -2,16 +2,23 @@ import { Injectable } from '@angular/core';
 import { Course } from '../models/course';
 import { CoursesMock } from '../../../../mocks/courses-mock';
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class CoursesDataService {
 
+    readonly baseUrl = `http://localhost:3004/courses`;
+
     courses: Course[] = CoursesMock;
 
-    constructor() { }
+    constructor(private http: HttpClient) { }
 
-    public getCourses(): Observable<Course[]> {
-        return of(this.courses);
+    public getCourses(start, count): Observable<Course[]> {
+        return this.http.get<Array<any>>(this.baseUrl, {params: {start: `${start}`, count: `${count}`}})
+                .pipe(map(courses => {
+                    return courses.map(course => new Course(course));
+                }));
     }
 
     public addCourse(course: Course): void {

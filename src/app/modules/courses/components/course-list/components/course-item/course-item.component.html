@@ -4,12 +4,12 @@
           <div class="mr-3">
               <div class="space-between">
                   <div class="inline">
-                    <h5 class="card-title">{{course.title | uppercase }}</h5>
-                    <i class="fa fa-star" *ngIf="course.topRated"
+                    <h5 class="card-title">{{course.name | uppercase }}</h5>
+                    <i class="fa fa-star" *ngIf="course.isTopRated"
                         [ngClass]="{'star': true}"></i>
                   </div>
                   <div class="inline">
-                      <h6 class="card-subtitle mb-2 mr-5">{{course.duration | duration}}</h6>
+                      <h6 class="card-subtitle mb-2 mr-5">{{course.length | duration}}</h6>
                       <h6 class="card-subtitle mb-2">{{course.creationDate | date:'MM.dd.yyyy'}}</h6>
                   </div>
               </div>

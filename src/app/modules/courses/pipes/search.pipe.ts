@@ -7,7 +7,7 @@ import { Course } from '../models/course';
 export class SearchPipe implements PipeTransform {
 
   transform(courses: Course[], searchInput: string): Course[] {
-    return courses.filter(course => course.title.toLowerCase().includes(searchInput.toLowerCase()));
+    return courses.filter(course => course.name.toLowerCase().includes(searchInput.toLowerCase()));
   }
 
 }

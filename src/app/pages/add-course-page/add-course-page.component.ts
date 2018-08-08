@@ -27,7 +27,7 @@ export class AddCoursePageComponent implements OnInit {
     .subscribe(retrievedCourse => {
       const course = retrievedCourse;
       this.courseModel = course || new Course();
-      this.currentPage = this.courseModel.title || 'Add new course';
+      this.currentPage = this.courseModel.name || 'Add new course';
     });
   }
 

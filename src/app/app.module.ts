@@ -15,6 +15,7 @@ import { CoursesComponent } from './modules/courses/courses.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { AuthGuardService } from './modules/auth/services/auth-guard.service';
 import { BreadcrumbsModule } from './components/breadcrumbs/breadcrumbs.module';
+import { HttpClientModule } from '@angular/common/http';
 
 export const ROUTES: Routes = [
     {path: '', redirectTo: '/courses', pathMatch: 'full'},
@@ -35,6 +36,7 @@ export const ROUTES: Routes = [
     ],
     imports: [
         FormsModule,
+        HttpClientModule,
         BrowserModule,
         BreadcrumbsModule,
         CoursesModule,

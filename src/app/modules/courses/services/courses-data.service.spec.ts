@@ -15,7 +15,7 @@ describe('CoursesDataService', () => {
   }));
 
   it('data should be got', inject([CoursesDataService], (service: CoursesDataService) => {
-    service.getCourses().subscribe(courses => {
+    service.getCourses(0, 10).subscribe(courses => {
       expect(courses).toBeTruthy();
       expect(courses).toEqual(CoursesMock);
     })

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class CourseItemComponent implements OnInit {
 
-    @Input() course: Course = new Course();
+    @Input() course: Course;
     @Output() deleteCourse: EventEmitter<Course> = new EventEmitter<Course>();
 
     constructor(private modalService: NgbModal,
