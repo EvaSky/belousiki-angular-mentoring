@@ -1,10 +1,12 @@
 <app-breadcrumbs currentPage="Courses"></app-breadcrumbs>
+<h3 *ngIf="!isDisplayed">Loading...</h3>
 <section *ngIf="isDisplayed">
     <app-tool-bar (search)="findCourses($event)"></app-tool-bar>
     <app-course-list [courses]="displayedCourses" 
         (delete)="deleteCourse($event)"
         (edit)="open.emit($event)"></app-course-list>
-
-    <button (click)="loadMore()">Load more...</button>
+    <div class=load-more>
+        <button class="btn btn-outline-primary" (click)="loadMore()">Load more...</button>
+    </div>
 </section>
 

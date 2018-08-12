@@ -4,7 +4,7 @@
   </a>
     <div *ngIf="isAuthenticated(); else elseBlock">
         <div class="navbar-text mr-2">
-            {{getUserName()}}
+            {{user?.firstName}} {{user?.lastName}}
         </div>
         <button class="btn btn-sm btn-outline-secondary" type="button"
          (click)="logout()">Log Off</button>

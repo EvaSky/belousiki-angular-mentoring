@@ -14,8 +14,9 @@ export class CoursesDataService {
 
     constructor(private http: HttpClient) { }
 
-    public getCourses(start, count): Observable<Course[]> {
-        return this.http.get<Array<any>>(this.baseUrl, {params: {start: `${start}`, count: `${count}`}})
+    public getCourses(start, count, searchInput = ''): Observable<Course[]> {
+        return this.http.get<Array<any>>(this.baseUrl, {params: {textFragment : `${searchInput}`,
+        start: `${start}`, count: `${count}`}})
                 .pipe(map(courses => {
                     return courses.map(course => new Course(course));
                 }));
@@ -25,12 +26,14 @@ export class CoursesDataService {
         this.courses.push(course);
     }
 
-    public getCourseById(id: string): Course {
-        return this.courses.find(course => course.id === id);
+    public getCourseById(id: string):  Observable<Course> {
+        //return this.courses.find(course => course.id === id);
+        return this.http.get<any>(`${this.baseUrl}/${id}`)
+                .pipe(map(course => new Course(course)));
     }
 
     public updateCourse(course: Course) {
-        this.removeCourse(this.getCourseById(course.id));
+        //this.removeCourse(this.getCourseById(course.id));
         this.addCourse(course);
     }
 

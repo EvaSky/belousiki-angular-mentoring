@@ -20,15 +20,20 @@ export class LoginPageComponent implements OnInit {
 
   login() {
     console.log(`username: ${this.username}, password: ${this.pass}`);
-    this.authService.login(this.username, this.pass);
-    if (this.authService.isAuthenticated) {
-      // Get the redirect URL from our auth service
-      // If no redirect has been set, use the default
-      let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/courses';
+    this.authService.login(this.username, this.pass)
+      .subscribe(() => {
+        if (this.authService.isAuthenticated) {
+        // Get the redirect URL from our auth service
+        // If no redirect has been set, use the default
+        let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/courses';
 
-      // Redirect the user
-      this.router.navigate([redirect]);
-    }
+        // Redirect the user
+        this.router.navigate([redirect]);
+        }
+      }, () => {
+        console.warn('error');
+      });
+  
   }
 
 }

@@ -22,6 +22,7 @@ export class CourseItemComponent implements OnInit {
     }
 
     edit() {
+        console.log(this.course);
         this.router.navigate(['/courses', this.course.id]);
     }
 

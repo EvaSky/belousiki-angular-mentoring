@@ -17,10 +17,10 @@ export class CoursesComponent implements OnInit, OnDestroy, OnChanges {
     public courses: Course[];
     public displayedCourses: Course[] = [];
     public isDisplayed: boolean;
-    private _courseSub: Observable<Course[]>;
     private destroy$: Subject<boolean> = new Subject<boolean>();
     private start: number = 0;
     private count: number = 10;
+    private searchInput = '';
 
     constructor(private coursesDataService: CoursesDataService,
         private searchPipe: SearchPipe) { }
@@ -33,9 +33,9 @@ export class CoursesComponent implements OnInit, OnDestroy, OnChanges {
         this.retrieveAllCourses(this.start, this.count);
     }
 
-    retrieveAllCourses(start, count) {
+    retrieveAllCourses(start, count, searchInput?) {
 
-        this.coursesDataService.getCourses(start, count)
+        this.coursesDataService.getCourses(start, count, searchInput)
             .pipe(takeUntil(this.destroy$))
             .subscribe(data => {
                 this.courses = data;
@@ -50,12 +50,15 @@ export class CoursesComponent implements OnInit, OnDestroy, OnChanges {
     }
 
     findCourses(searchInput): void {
-        this.displayedCourses = this.searchPipe.transform(this.courses, searchInput);
+        this.isDisplayed = false;
+        this.searchInput = searchInput;
+        //this.displayedCourses = this.searchPipe.transform(this.courses, searchInput);
+        this.retrieveAllCourses(this.start, this.count, this.searchInput);
     }
 
     loadMore() {
         this.start++;
-        this.retrieveAllCourses(this.start, this.count);
+        this.retrieveAllCourses(this.start, this.count, this.searchInput);
     }
 
     ngOnDestroy() {

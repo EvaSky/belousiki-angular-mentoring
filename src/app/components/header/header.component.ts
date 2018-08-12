@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-    userName: string;
+    @Input() user: User;
 
     constructor(private authService: AuthService,
                 private router: Router) {
@@ -30,10 +30,6 @@ export class HeaderComponent implements OnInit {
 
     isAuthenticated() {
         return this.authService.isAuthenticated();
-    }
-
-    getUserName() {
-        return this.authService.getUserInfo().login;
     }
 
 }

@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 })
 export class AddCoursePageComponent implements OnInit {
 
-  courseModel: Course;
+  courseModel: Course = new Course();
   currentPage: string;
   
   constructor( private route: ActivatedRoute,
@@ -20,14 +20,17 @@ export class AddCoursePageComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap
-    .pipe(
-      map((params: ParamMap) =>
+    .subscribe((params: ParamMap) => {
+      if (params.get('id')) {
         this.coursesDataService.getCourseById(params.get('id'))
-    ))
-    .subscribe(retrievedCourse => {
-      const course = retrievedCourse;
-      this.courseModel = course || new Course();
-      this.currentPage = this.courseModel.name || 'Add new course';
+        .subscribe(retrievedCourse => {
+          const course = retrievedCourse;
+          this.courseModel = course || this.courseModel;
+          this.currentPage = this.courseModel.name || 'Add new course';
+        });
+      } else {
+        this.currentPage = 'Add new course';
+      }
     });
   }
 
