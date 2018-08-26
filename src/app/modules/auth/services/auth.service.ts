@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { tap, map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { tap, map, switchMap } from 'rxjs/operators';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { User } from '../../../models/user';
 
 @Injectable({
@@ -10,6 +10,7 @@ import { User } from '../../../models/user';
 export class AuthService {
 
   readonly baseUrl = `http://localhost:3004/auth`;
+  userSub: BehaviorSubject<User> = new BehaviorSubject(null);
 
   constructor(private http: HttpClient) { }
 
@@ -19,14 +20,18 @@ export class AuthService {
   login(login, pass): Observable<any> {
     const body = {login: `${login}`, password: `${pass}`};
     return this.http.post(`${this.baseUrl}/login`, body)
-      .pipe(tap(token => {
-        console.log(token);
-        localStorage.setItem('token', token.token);
+      .pipe(tap((token: any) => {
+            console.log(token);
+            localStorage.setItem('token', token.token);
+          }),
+          switchMap(() => {
+            return this.getUserInfo();
       }));
   }
 
   logout(): void {
     localStorage.removeItem('token');
+    this.userSub.next(null);
   } 
 
   isAuthenticated(): boolean {
@@ -39,9 +44,11 @@ export class AuthService {
     const httpOptions = {
       headers: {'Authorization': token}
     };
-    return this.http.post(`${this.baseUrl}/userinfo`, null, httpOptions)
+    return this.http.post<any>(`${this.baseUrl}/userinfo`, null, httpOptions)
       .pipe(map(user => {
-         return new User(user);
+        const loggedUser = new User(user);
+        this.userSub.next(loggedUser);
+        return user;
       }));
   }
 }

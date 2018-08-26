@@ -1,46 +1,43 @@
-import { Component, OnDestroy, OnInit, OnChanges, Output, EventEmitter } from '@angular/core';
+import { Component, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
 import { CoursesDataService } from './services/courses-data.service';
 import { Course } from './models/course';
-import { Observable, Subject, Subscription } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { SearchPipe } from './pipes/search.pipe';
+import { Subject } from 'rxjs';
+import { takeUntil, finalize } from 'rxjs/operators';
+import { LoaderService } from '../../components/loader/services/loader.service';
 
 @Component({
     selector: 'app-courses',
     templateUrl: './courses.component.html',
     styleUrls: ['./courses.component.css']
 })
-export class CoursesComponent implements OnInit, OnDestroy, OnChanges {
+export class CoursesComponent implements OnInit, OnDestroy {
 
     @Output() open: EventEmitter<Course> = new EventEmitter<Course>();
 
     public courses: Course[];
     public displayedCourses: Course[] = [];
-    public isDisplayed: boolean;
     private destroy$: Subject<boolean> = new Subject<boolean>();
     private start: number = 0;
     private count: number = 10;
     private searchInput = '';
 
     constructor(private coursesDataService: CoursesDataService,
-        private searchPipe: SearchPipe) { }
+                private loaderService: LoaderService) { }
 
     ngOnInit() {
         this.retrieveAllCourses(this.start, this.count);
     }
 
-    ngOnChanges() {
-        this.retrieveAllCourses(this.start, this.count);
-    }
-
-    retrieveAllCourses(start, count, searchInput?) {
-
-        this.coursesDataService.getCourses(start, count, searchInput)
-            .pipe(takeUntil(this.destroy$))
-            .subscribe(data => {
+    retrieveAllCourses(start, count) {
+        this.loaderService.show();
+        this.coursesDataService.getCourses(start, count)
+            .pipe(takeUntil(this.destroy$),
+                  finalize(() => this.loaderService.hide())
+            )
+            .subscribe((data: Course[]) => {
                 this.courses = data;
-                this.displayedCourses = this.displayedCourses.concat(this.courses);
-                this.isDisplayed = true;
+                this.displayedCourses = start === 0 ? 
+                    this.courses : this.displayedCourses.concat(this.courses);
             });
     }
 
@@ -49,16 +46,27 @@ export class CoursesComponent implements OnInit, OnDestroy, OnChanges {
         this.retrieveAllCourses(this.start, this.count);
     }
 
-    findCourses(searchInput): void {
-        this.isDisplayed = false;
+    findCourses(searchInput, start?): void {
+        this.loaderService.show();
         this.searchInput = searchInput;
-        //this.displayedCourses = this.searchPipe.transform(this.courses, searchInput);
-        this.retrieveAllCourses(this.start, this.count, this.searchInput);
+        this.start = start || 0;
+        this.coursesDataService.getCourses(this.start, this.count, searchInput)
+            .pipe(takeUntil(this.destroy$),
+                finalize(() => this.loaderService.hide()))
+            .subscribe((data: Course[]) => {
+                this.courses = data;
+                this.displayedCourses = this.start === 0 ? 
+                    this.courses : this.displayedCourses.concat(this.courses);
+            });
     }
 
     loadMore() {
         this.start++;
-        this.retrieveAllCourses(this.start, this.count, this.searchInput);
+        if (this.searchInput){
+            this.findCourses(this.searchInput, this.start);
+        } else {
+            this.retrieveAllCourses(this.start, this.count);
+        }
     }
 
     ngOnDestroy() {
@@ -66,5 +74,4 @@ export class CoursesComponent implements OnInit, OnDestroy, OnChanges {
         // Now let's also unsubscribe from the subject itself:
         this.destroy$.unsubscribe();
     }
-
 }
