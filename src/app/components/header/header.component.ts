@@ -10,25 +10,27 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-    @Input() user: User;
+    user: User;
 
     constructor(private authService: AuthService,
                 private router: Router) {
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
+        this.authService.userSub
+        .subscribe(user => this.user = user);
     }
 
-    login() {
+    login(): void {
         this.router.navigate(['/login']);
     }
     
-    logout() {
+    logout(): void {
         this.authService.logout();
         this.router.navigate(['/login']);
     }
 
-    isAuthenticated() {
+    isAuthenticated(): boolean {
         return this.authService.isAuthenticated();
     }
 

@@ -16,6 +16,8 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { AuthGuardService } from './modules/auth/services/auth-guard.service';
 import { BreadcrumbsModule } from './components/breadcrumbs/breadcrumbs.module';
 import { HttpClientModule } from '@angular/common/http';
+import { LoaderComponent } from './components/loader/loader.component';
+import { LoaderService } from './components/loader/services/loader.service';
 
 export const ROUTES: Routes = [
     {path: '', redirectTo: '/courses', pathMatch: 'full'},
@@ -32,7 +34,8 @@ export const ROUTES: Routes = [
         FooterComponent,
         LoginPageComponent,
         AddCoursePageComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        LoaderComponent
     ],
     imports: [
         FormsModule,
@@ -44,7 +47,7 @@ export const ROUTES: Routes = [
         NgbModule.forRoot(),
         RouterModule.forRoot(ROUTES, {useHash: true})
     ],
-    providers: [],
+    providers: [LoaderService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

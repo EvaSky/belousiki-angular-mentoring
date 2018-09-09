@@ -3,7 +3,8 @@ import { Course } from '../models/course';
 import { CoursesMock } from '../../../../mocks/courses-mock';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, finalize } from 'rxjs/operators';
+import { LoaderService } from '../../../components/loader/services/loader.service';
 
 @Injectable()
 export class CoursesDataService {
@@ -12,14 +13,15 @@ export class CoursesDataService {
 
     courses: Course[] = CoursesMock;
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient,
+                private loaderService: LoaderService) { }
 
     public getCourses(start, count, searchInput = ''): Observable<Course[]> {
         return this.http.get<Array<any>>(this.baseUrl, {params: {textFragment : `${searchInput}`,
         start: `${start}`, count: `${count}`}})
                 .pipe(map(courses => {
-                    return courses.map(course => new Course(course));
-                }));
+                        return courses.map(course => new Course(course));
+                    }));
     }
 
     public addCourse(course: Course): void {
@@ -43,6 +45,13 @@ export class CoursesDataService {
             this.courses.splice(index, 1);
         }
         console.log(this.courses);
+    }
+
+    private showLoader(): void {
+        this.loaderService.show();
+    }
+    private hideLoader(): void {
+        this.loaderService.hide();
     }
 
 }

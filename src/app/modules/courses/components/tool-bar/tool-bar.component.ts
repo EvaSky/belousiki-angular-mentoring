@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class ToolBarComponent implements OnInit {
 
-    @Output() search: EventEmitter<string> = new EventEmitter();
+    @Output() searchAction: EventEmitter<string> = new EventEmitter();
 
     constructor(private router: Router) {
     }
@@ -18,7 +18,7 @@ export class ToolBarComponent implements OnInit {
     }
 
     doSearch(searchInput) {
-        this.search.emit(searchInput);
+        this.searchAction.emit(searchInput);
     }
 
     openAddCourse() {
