@@ -25,7 +25,7 @@ export class LoginPageComponent implements OnInit {
         if (this.authService.isAuthenticated) {
         // Get the redirect URL from our auth service
         // If no redirect has been set, use the default
-        let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/courses';
+        const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/courses';
 
         // Redirect the user
         this.router.navigate([redirect]);
@@ -33,7 +33,6 @@ export class LoginPageComponent implements OnInit {
       }, () => {
         console.warn('error');
       });
-  
   }
 
 }

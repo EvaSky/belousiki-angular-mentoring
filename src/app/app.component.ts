@@ -9,20 +9,22 @@ import { User } from './models/user';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  
+
   user: User;
-  
+
   isAddCoursePageOpen: boolean;
   editedCourse: Course;
 
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.authService.getUserInfo()
-      .subscribe(user => this.user = user);
+    if (this.isAuthenticated()) {
+      this.authService.getUserInfo()
+        .subscribe(user => this.user = user);
+    }
   }
 
-  isAuthenticated(): boolean {
+  private isAuthenticated(): boolean {
     return this.authService.isAuthenticated();
   }
 

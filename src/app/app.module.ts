@@ -1,11 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CoursesModule } from './modules/courses/courses.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { coursesReducer } from './modules/courses/courses.reducer';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { AuthModule } from './modules/auth/auth.module';
 import { FormsModule } from '@angular/forms';
@@ -26,7 +28,7 @@ export const ROUTES: Routes = [
     {path: 'courses/new', component: AddCoursePageComponent, canActivate: [AuthGuardService]},
     {path: 'courses/:id', component: AddCoursePageComponent, canActivate: [AuthGuardService]},
     {path: '**', component: PageNotFoundComponent}
-] 
+];
 @NgModule({
     declarations: [
         AppComponent,
@@ -38,6 +40,7 @@ export const ROUTES: Routes = [
         LoaderComponent
     ],
     imports: [
+        StoreModule.forRoot({courses: coursesReducer}),
         FormsModule,
         HttpClientModule,
         BrowserModule,

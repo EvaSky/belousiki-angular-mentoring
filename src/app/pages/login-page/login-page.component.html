@@ -1,13 +1,13 @@
 <div class="form-signin">
   <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
   <label for="inputLogin" class="sr-only">Login</label>
-  <input type="text" id="inputLogin" class="form-control mb-3" 
+  <input type="text" id="inputLogin" class="form-control mb-3"
     [(ngModel)]="username" placeholder="Login" required autofocus>
- 
+
   <label for="inputPassword" class="sr-only">Password</label>
-  <input type="password" id="inputPassword" class="form-control" 
+  <input type="password" id="inputPassword" class="form-control"
     [(ngModel)]="pass" placeholder="Password" required>
-  
+  <span>login: Warner, pass: ea</span>
   <button class="btn btn-lg btn-primary btn-block" (click)="login()">Sign in</button>
   <p class="mt-5 mb-3 text-muted"></p>
 </div>

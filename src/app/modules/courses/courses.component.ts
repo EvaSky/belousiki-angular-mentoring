@@ -1,9 +1,12 @@
 import { Component, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
+import { AppState } from '../../store';
+import { CourseAction } from './models/course-action.enum';
 import { CoursesDataService } from './services/courses-data.service';
 import { Course } from './models/course';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { takeUntil, finalize } from 'rxjs/operators';
 import { LoaderService } from '../../components/loader/services/loader.service';
+import { Store } from '@ngrx/store';
 
 @Component({
     selector: 'app-courses',
@@ -15,6 +18,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
     @Output() open: EventEmitter<Course> = new EventEmitter<Course>();
 
     public courses: Course[];
+    public courses$: Observable<Course[]>;
     public displayedCourses: Course[] = [];
     private destroy$: Subject<boolean> = new Subject<boolean>();
     private start: number = 0;
@@ -22,10 +26,14 @@ export class CoursesComponent implements OnInit, OnDestroy {
     private searchInput = '';
 
     constructor(private coursesDataService: CoursesDataService,
-                private loaderService: LoaderService) { }
+                private loaderService: LoaderService,
+                private store$: Store<AppState>) {
+        this.courses$ = this.store$.select('courses');
+    }
 
     ngOnInit() {
-        this.retrieveAllCourses(this.start, this.count);
+        this.store$.dispatch({type: CourseAction.GET_ALL_COURSES, payload: {start: this.start, count: this.count}});
+        //this.retrieveAllCourses(this.start, this.count);
     }
 
     retrieveAllCourses(start, count) {
@@ -36,7 +44,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
             )
             .subscribe((data: Course[]) => {
                 this.courses = data;
-                this.displayedCourses = start === 0 ? 
+                this.displayedCourses = start === 0 ?
                     this.courses : this.displayedCourses.concat(this.courses);
             });
     }
@@ -55,7 +63,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
                 finalize(() => this.loaderService.hide()))
             .subscribe((data: Course[]) => {
                 this.courses = data;
-                this.displayedCourses = this.start === 0 ? 
+                this.displayedCourses = this.start === 0 ?
                     this.courses : this.displayedCourses.concat(this.courses);
             });
     }
