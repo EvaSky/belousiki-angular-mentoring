@@ -26,7 +26,7 @@ export const ROUTES: Routes = [
     {path: 'courses/new', component: AddCoursePageComponent, canActivate: [AuthGuardService]},
     {path: 'courses/:id', component: AddCoursePageComponent, canActivate: [AuthGuardService]},
     {path: '**', component: PageNotFoundComponent}
-] 
+];
 @NgModule({
     declarations: [
         AppComponent,

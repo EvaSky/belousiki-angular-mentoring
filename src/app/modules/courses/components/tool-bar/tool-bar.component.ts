@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Course } from '../../models/course';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,14 +6,11 @@ import { Router } from '@angular/router';
     templateUrl: './tool-bar.component.html',
     styleUrls: ['./tool-bar.component.css']
 })
-export class ToolBarComponent implements OnInit {
+export class ToolBarComponent {
 
     @Output() searchAction: EventEmitter<string> = new EventEmitter();
 
     constructor(private router: Router) {
-    }
-
-    ngOnInit() {
     }
 
     doSearch(searchInput) {

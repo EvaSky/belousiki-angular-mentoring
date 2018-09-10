@@ -17,8 +17,8 @@ export class CoursesComponent implements OnInit, OnDestroy {
     public courses: Course[];
     public displayedCourses: Course[] = [];
     private destroy$: Subject<boolean> = new Subject<boolean>();
-    private start: number = 0;
-    private count: number = 10;
+    private start = 0;
+    private count = 10;
     private searchInput = '';
 
     constructor(private coursesDataService: CoursesDataService,
@@ -36,7 +36,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
             )
             .subscribe((data: Course[]) => {
                 this.courses = data;
-                this.displayedCourses = start === 0 ? 
+                this.displayedCourses = start === 0 ?
                     this.courses : this.displayedCourses.concat(this.courses);
             });
     }
@@ -55,14 +55,14 @@ export class CoursesComponent implements OnInit, OnDestroy {
                 finalize(() => this.loaderService.hide()))
             .subscribe((data: Course[]) => {
                 this.courses = data;
-                this.displayedCourses = this.start === 0 ? 
+                this.displayedCourses = this.start === 0 ?
                     this.courses : this.displayedCourses.concat(this.courses);
             });
     }
 
     loadMore() {
         this.start++;
-        if (this.searchInput){
+        if (this.searchInput) {
             this.findCourses(this.searchInput, this.start);
         } else {
             this.retrieveAllCourses(this.start, this.count);

@@ -14,7 +14,6 @@ export class SearchComponent implements OnInit, OnDestroy {
 
     searchForm: FormGroup;
     subscriptions: Subscription[] = [];
-    searchObservable: Observable<string>;
 
     constructor() {
     }
@@ -29,8 +28,8 @@ export class SearchComponent implements OnInit, OnDestroy {
                     return Observable.create((observer) => {
                         if (value && value.search) {
                             observer.next(value.search);
-                        }     
-                    })
+                        }
+                    });
                 }))
             .subscribe((searchInput: string) => {
                 if (searchInput.length >= 3) {

@@ -32,7 +32,7 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('token');
     this.userSub.next(null);
-  } 
+  }
 
   isAuthenticated(): boolean {
     const token = localStorage.getItem('token');

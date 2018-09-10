@@ -7,16 +7,13 @@ import { Router } from '@angular/router';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css']
 })
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent {
 
   username: string;
   pass: string;
 
   constructor(private authService: AuthService,
               private router: Router) { }
-
-  ngOnInit() {
-  }
 
   login() {
     console.log(`username: ${this.username}, password: ${this.pass}`);
@@ -25,7 +22,7 @@ export class LoginPageComponent implements OnInit {
         if (this.authService.isAuthenticated) {
         // Get the redirect URL from our auth service
         // If no redirect has been set, use the default
-        let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/courses';
+        const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/courses';
 
         // Redirect the user
         this.router.navigate([redirect]);
@@ -33,7 +30,6 @@ export class LoginPageComponent implements OnInit {
       }, () => {
         console.warn('error');
       });
-  
   }
 
 }
