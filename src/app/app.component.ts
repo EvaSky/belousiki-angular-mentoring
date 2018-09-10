@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './modules/auth/services/auth.service';
-import { Course } from './modules/courses/models/course';
 import { User } from './models/user';
 
 @Component({
@@ -9,30 +8,19 @@ import { User } from './models/user';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  
-  user: User;
-  
-  isAddCoursePageOpen: boolean;
-  editedCourse: Course;
 
-  constructor(private authService: AuthService) {}
+    user: User;
 
-  ngOnInit(): void {
-    this.authService.getUserInfo()
-      .subscribe(user => this.user = user);
-  }
+    constructor(private authService: AuthService) {}
 
-  isAuthenticated(): boolean {
-    return this.authService.isAuthenticated();
-  }
+    ngOnInit(): void {
+        if (this.isAuthenticated()) {
+            this.authService.getUserInfo()
+                .subscribe(user => this.user = user);
+        }
+    }
 
-  openAddCoursePage(course: Course) {
-    this.editedCourse = course;
-    this.isAddCoursePageOpen = true;
-  }
-
-  close() {
-    this.isAddCoursePageOpen = false;
-  }
-
+    isAuthenticated(): boolean {
+      return this.authService.isAuthenticated();
+    }
 }

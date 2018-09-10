@@ -7,13 +7,14 @@ export class Course implements ICourse {
     id: string;
     name: string;
     isTopRated?: boolean = false;
+    authors?: Array<any>;
 
     constructor(course?) {
-        this.creationDate = course? new Date(course.date) : null;
-        this.description = course? course.description : null;
-        this.length = course? course.length : null;
-        this.id = course? course.id : null;
-        this.name = course? course.name : null;
-        this.isTopRated = course? course.isTopRated : false;
+        this.creationDate = course ? new Date(course.date) : null;
+        this.description = course ? course.description : null;
+        this.length = course ? course.length : null;
+        this.id = course ? course.id : null;
+        this.name = course ? course.name : null;
+        this.isTopRated = course ? course.isTopRated : false;
     }
 }

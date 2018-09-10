@@ -15,9 +15,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     searchForm: FormGroup;
     subscriptions: Subscription[] = [];
 
-    constructor() {
-    }
-
     ngOnInit(): void {
         this.searchForm = new FormGroup({
             search: new FormControl('')
@@ -43,9 +40,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     }
 
     onSearch(): void {
-        debugger;
         console.log('search: ' + this.searchForm.value.search);
         this.searchAction.emit(this.searchForm.value.search);
     }
-
 }

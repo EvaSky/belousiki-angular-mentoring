@@ -8,7 +8,7 @@ import { CoursesModule } from './modules/courses/courses.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { AuthModule } from './modules/auth/auth.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { AddCoursePageComponent } from './pages/add-course-page/add-course-page.component';
 import { CoursesComponent } from './modules/courses/courses.component';
@@ -39,6 +39,7 @@ export const ROUTES: Routes = [
     ],
     imports: [
         FormsModule,
+        ReactiveFormsModule,
         HttpClientModule,
         BrowserModule,
         BreadcrumbsModule,
